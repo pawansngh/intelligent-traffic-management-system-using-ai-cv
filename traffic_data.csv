@@ -1,0 +1,8 @@
+Time(sec),Vehicles Passed,Vehicles Per Minute,Unique Vehicles,Traffic Status
+0,0,0,23,LOW
+5,5,59,66,HIGH
+10,15,89,103,HIGH
+15,23,91,139,HIGH
+20,30,89,171,HIGH
+25,41,98,186,HIGH
+27,44,95,203,HIGH

@@ -1,0 +1,7 @@
+matplotlib
+opencv-python
+pandas
+streamlit
+supervision
+torch
+ultralytics
