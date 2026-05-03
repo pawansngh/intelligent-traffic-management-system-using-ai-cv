@@ -1,0 +1,14 @@
+.git
+.venv
+__pycache__
+.pytest_cache
+.mypy_cache
+outputs
+uploads
+history
+videos/*.mp4
+!videos/traffic.mp4
+*.pyc
+*.pyo
+*.pyd
+*.log

@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: intelligent-traffic-management-system
+    env: docker
+    plan: free
+    autoDeploy: true

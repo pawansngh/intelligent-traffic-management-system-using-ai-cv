@@ -7,7 +7,7 @@ from traffic_pipeline import TrafficAnalysisConfig, analyze_video
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Analyze traffic video footage with YOLO vehicle detection and tracking."
+        description="Intelligent Traffic Management System Using AI and CV."
     )
     parser.add_argument(
         "--video",
@@ -64,6 +64,54 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         help="Optional cap for processed frames, useful for quick tests.",
     )
+    parser.add_argument(
+        "--lane-count",
+        type=int,
+        default=3,
+        help="Number of lane regions to monitor across the frame width.",
+    )
+    parser.add_argument(
+        "--lane-boundaries",
+        nargs="*",
+        type=float,
+        default=None,
+        help="Optional normalized lane split positions such as 0.30 0.62 for 3 lanes.",
+    )
+    parser.add_argument(
+        "--run-label",
+        default="",
+        help="Short label for this run, such as morning_peak_day1.",
+    )
+    parser.add_argument(
+        "--location-name",
+        default="",
+        help="Human-readable road or area name for the recording location.",
+    )
+    parser.add_argument(
+        "--intersection-id",
+        default="",
+        help="Intersection or camera identifier for dataset grouping.",
+    )
+    parser.add_argument(
+        "--capture-date",
+        default="",
+        help="Recording date in YYYY-MM-DD format.",
+    )
+    parser.add_argument(
+        "--time-of-day",
+        default="UNKNOWN",
+        help="Context label such as MORNING, AFTERNOON, EVENING, NIGHT, or PEAK.",
+    )
+    parser.add_argument(
+        "--weather",
+        default="UNKNOWN",
+        help="Weather condition label such as CLEAR, CLOUDY, RAIN, or FOG.",
+    )
+    parser.add_argument(
+        "--notes",
+        default="",
+        help="Optional notes about camera angle, event conditions, or traffic context.",
+    )
     return parser
 
 
@@ -81,9 +129,19 @@ def main() -> None:
             log_interval_sec=max(1.0, args.log_interval_sec),
             display=args.display,
             max_frames=args.max_frames,
+            lane_count=max(1, args.lane_count),
+            lane_boundaries=args.lane_boundaries,
+            run_label=args.run_label,
+            location_name=args.location_name,
+            intersection_id=args.intersection_id,
+            capture_date=args.capture_date,
+            time_of_day=args.time_of_day,
+            weather_condition=args.weather,
+            notes=args.notes,
         )
     )
 
+    print("Intelligent Traffic Management System Using AI and CV")
     print("Traffic analysis complete")
     for key, value in summary.items():
         print(f"{key}: {value}")

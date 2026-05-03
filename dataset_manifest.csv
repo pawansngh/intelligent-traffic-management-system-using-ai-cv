@@ -1,0 +1,2 @@
+video_path,run_label,location_name,intersection_id,capture_date,time_of_day,weather_condition,notes,lane_count,lane_boundaries,line_y_ratio,log_interval_sec
+videos/traffic.mp4,morning_sample_01,Sample Crossroad,INT-001,2026-05-01,MORNING,CLEAR,Bundled sample video collected for prototype dataset bootstrapping,3,"[0.33, 0.66]",0.55,5

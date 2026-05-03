@@ -1,0 +1,11 @@
+video_path,run_label,location_name,intersection_id,capture_date,time_of_day,weather_condition,notes,lane_count,lane_boundaries,line_y_ratio,log_interval_sec
+videos/10161875-hd_2560_1440_30fps.mp4,auto_10161875,Unknown Location,UNKNOWN,2026-05-02,UNKNOWN,UNKNOWN,Auto-ingested user-added traffic video,3,"[0.33, 0.66]",0.55,5
+videos/12207144_1920_1080_30fps.mp4,auto_12207144,Unknown Location,UNKNOWN,2026-05-02,UNKNOWN,UNKNOWN,Auto-ingested user-added traffic video,3,"[0.33, 0.66]",0.55,5
+videos/12742244_1920_1080_50fps.mp4,auto_12742244,Unknown Location,UNKNOWN,2026-05-02,UNKNOWN,UNKNOWN,Auto-ingested user-added traffic video,3,"[0.33, 0.66]",0.55,5
+videos/13488838_3840_2160_30fps.mp4,auto_13488838,Unknown Location,UNKNOWN,2026-05-02,UNKNOWN,UNKNOWN,Auto-ingested user-added traffic video,3,"[0.33, 0.66]",0.55,5
+videos/13707628_3840_2160_24fps.mp4,auto_13707628,Unknown Location,UNKNOWN,2026-05-02,UNKNOWN,UNKNOWN,Auto-ingested user-added traffic video,3,"[0.33, 0.66]",0.55,5
+videos/15125831_1920_1080_30fps.mp4,auto_15125831,Unknown Location,UNKNOWN,2026-05-02,UNKNOWN,UNKNOWN,Auto-ingested user-added traffic video,3,"[0.33, 0.66]",0.55,5
+videos/15643210_3840_2160_25fps.mp4,auto_15643210,Unknown Location,UNKNOWN,2026-05-02,UNKNOWN,UNKNOWN,Auto-ingested user-added traffic video,3,"[0.33, 0.66]",0.55,5
+videos/North-East.mp4,auto_north_east,Unknown Location,UNKNOWN,2026-05-02,UNKNOWN,UNKNOWN,Auto-ingested user-added traffic video,3,"[0.33, 0.66]",0.55,5
+videos/road_trafifc.mp4,auto_road_traffic,Unknown Location,UNKNOWN,2026-05-02,UNKNOWN,UNKNOWN,Auto-ingested user-added traffic video,3,"[0.33, 0.66]",0.55,5
+videos/traffic.mp4,auto_traffic_sample,Unknown Location,UNKNOWN,2026-05-02,UNKNOWN,UNKNOWN,Auto-ingested user-added traffic video,3,"[0.33, 0.66]",0.55,5
