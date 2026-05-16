@@ -59,12 +59,28 @@ def _traffic_status(vehicles_per_minute: int) -> tuple[str, tuple[int, int, int]
     return "HIGH", (0, 0, 255)
 
 
+
+
 def _lane_status(vehicle_count: int) -> str:
     if vehicle_count <= 2:
         return "LOW"
     if vehicle_count <= 5:
         return "MEDIUM"
     return "HIGH"
+
+def calculate_signal_time(vehicles_per_minute: int) -> int:
+    if vehicles_per_minute < 10:
+        return 15
+    elif vehicles_per_minute < 20:
+        return 30
+    else:
+        return 45
+
+
+def get_priority_lane(lane_counts: list[int]) -> int:
+    if not lane_counts:
+        return 0
+    return lane_counts.index(max(lane_counts))
 
 
 def _resolve_emergency_classes(model_names: dict[int, str], keywords: tuple[str, ...]) -> set[int]:
@@ -310,6 +326,8 @@ def analyze_video(
     last_emergency_detected = False
     last_emergency_lane = -1
     last_emergency_count = 0
+    last_signal_time = 0
+    last_priority_lane = 0
 
     with csv_path.open("w", newline="", encoding="utf-8") as csv_file:
         csv_writer = csv.writer(csv_file)
@@ -325,6 +343,8 @@ def analyze_video(
                 "Emergency Detected",
                 "Emergency Lane",
                 "Emergency Count",
+                "Signal Time",
+                "Priority Lane"
             ]
         )
 
@@ -403,6 +423,18 @@ def analyze_video(
             vehicles_passed = int(line_zone.in_count + line_zone.out_count)
             vehicles_per_minute = int((vehicles_passed / elapsed_seconds) * 60)
             status, color = _traffic_status(vehicles_per_minute)
+          
+            if emergency_detected and emergency_lane >= 0:
+             signal_time = 60
+             priority_lane = emergency_lane
+            else:
+             signal_time = calculate_signal_time(vehicles_per_minute)
+             priority_lane = get_priority_lane(lane_counts)
+            
+            last_signal_time = signal_time
+            last_priority_lane = priority_lane
+           
+
             last_elapsed_seconds = elapsed_seconds
             last_vehicles_passed = vehicles_passed
             last_status = status
@@ -447,6 +479,9 @@ def analyze_video(
                 (0, 255, 255),
                 2,
             )
+             
+          
+
             cv2.putText(
                 annotated_frame,
                 f"Traffic Status: {status}",
@@ -456,6 +491,28 @@ def analyze_video(
                 color,
                 2,
             )
+
+
+            cv2.putText(
+                annotated_frame,
+                f"Green Signal Lane: {priority_lane + 1}",
+                (20, 200),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.9,
+                (0, 255, 0),
+                2,
+            )
+
+            cv2.putText(
+                annotated_frame,
+                f"Signal Time: {signal_time}s",
+                (20, 240),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.9,
+                (255, 255, 0),
+                2,
+            )
+
             emergency_text = "Emergency Priority: Not Supported"
             emergency_color = (60, 60, 60)
             if emergency_supported:
@@ -541,7 +598,9 @@ def analyze_video(
                     json.dumps(last_lane_statuses),
                     int(last_emergency_detected),
                     last_emergency_lane + 1 if last_emergency_lane >= 0 else 0,
-                    last_emergency_count,
+                    last_emergency_count,   
+                    last_signal_time,
+                    last_priority_lane + 1,                                    
                 ]
             )
             logged_rows += 1
@@ -586,4 +645,6 @@ def analyze_video(
         "history_path": history_path,
         "training_data_path": training_data_path,
         "rows_logged": logged_rows,
+        "signal_time": last_signal_time,
+        "priority_lane": last_priority_lane + 1,
     }
