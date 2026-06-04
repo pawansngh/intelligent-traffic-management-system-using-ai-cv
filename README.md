@@ -229,6 +229,4 @@ For a true production deployment, the next engineering upgrades would be:
 
 ## Showcase Summary
 
-If you want one sentence for GitHub or LinkedIn:
-
 > Intelligent Traffic Management System Using AI and CV is a deployable smart-traffic analytics application that uses computer vision to detect vehicles, estimate lane congestion, recommend adaptive signal timing, and forecast short-horizon traffic behavior from historical video data.
